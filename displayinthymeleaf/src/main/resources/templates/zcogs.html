@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product List</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+table th, table td {
+	text-align: center; /* Horizontal centering for all headers and cells */
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="my-4 text-center">Product List</h1>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>Billing Document</th>
+					<th>Billing Quantity Unit</th>
+					<th>Net Amount</th>
+					<th>Product Group</th>
+					<!-- Add more headers as needed -->
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Iterate over products and display each row -->
+				<tr th:each="zcogs : ${data}">
+					<td th:text="${zcogs.billingDocument_1}"></td>
+					<td th:text="${zcogs.billingQuantityUnit}"></td>
+					<td th:text="${zcogs.netAmount}"></td>
+					<td th:text="${zcogs.productGroup}"></td>
+					<!-- Add more columns as needed -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</body>
+</html>
