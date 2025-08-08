@@ -1,0 +1,124 @@
+<productlist class="card shadow-none" th:fragment="orderlist">
+    <div class="card-header">
+        <h3 class="card-title">Product List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th style="width: 25%" class="text-left">Item</th>
+                    <th style="width: 25%"> <i class="far fa-building"></i> Supplier</th>
+                    <th class="text-center"> <i class="fas fa-balance-scale"></i> UOM</th>
+                    <th> <i class="fas fa-cubes"></i> Group</th>
+                    <th> <i class="fas fa-truck"></i> Stock</th>
+                    <th class="text-center"><i class="fas fa-business-time"></i> Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd>
+                        </dl>
+                    </td>
+                    <td><a href="#">VKC Plastomers</a></td>
+                    <td class="text-center">KG</td>
+                    <td> Garments</td>
+                    <td>300 Qty</td>
+
+                    <td class="text-center"><span class="badge bg-success">Active</span></td>
+                    <td><button type="button" class="btn btn-outline-default btn-block btn-sm"><i
+                                class="fas fa-chevron-circle-right"></i></button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <dl>
+                            <dt>Peter England Half sleeve</dt>
+                            <dd>SHPTHF48</dd>
+                        </dl>
+                    </td>
+                    <td><a href="#">Peter England</a></td>
+                    <td class="text-center">NOS</td>
+                    <td> Garments</td>
+                    <td>100 Qty</td>
+
+                    <td class="text-center"><span class="badge bg-warning">Inactive</span></td>
+                    <td><button type="button" class="btn btn-outline-default btn-block btn-sm"><i
+                                class="fas fa-chevron-circle-right"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</productlist>
+<!-- Order Card Small white -->
+
+<!-- Order Card Small active -->
+<productcard class="info-box shadow-none" th:fragment="productcard-sm-active(name,code,uom,imagepath)" th:with="isCart=${isCart} ?: false">
+    <span class="info-box-icon">
+        <i th:if="${imagepath} == ''" class="fas fa-box"> </i>
+        <img th:if="${imagepath} != ''" th:src="@{${imagepath}}" class="img-fluid">
+    </span>
+    <div class="info-box-content"> 
+        <small class="text-capitalize" th:text=${name}> Item Name </small>
+        <div class="d-flex justify-content-between">
+            <small th:text=${code} class="text-uppercase ">Item Code</small>
+            <small class="text-uppercase"> <i class="fas fa-balance-scale"> </i> <span th:text=${uom}></span></small>
+        </div>
+        <div class="input-group input-group-sm" th:if="${isCart}">
+            <input type="number" class="form-control inputquantity" placeholder="Qty" min="1" th:attr="data-code=${code},data-uom=${uom},data-name=${name}">
+            <span class="input-group-append">
+                <button type="button" class="btn btn-info btn-flat">+</button>
+            </span>
+        </div>
+    </div>
+</productcard>
+
+<!-- Order Card Small Inactive -->
+<productcard class="info-box card-outline card-warning  shadow-none"
+    th:fragment="productcard-sm-inactive(name,code,uom,imagepath)">
+    <span class="info-box-icon"><img th:src="@{${imagepath}}" class="img-fluid"></span>
+    <div class="info-box-content">
+        <small class="text-capitalize" th:text=${name}> Item Name </small>
+        <div class="d-flex justify-content-between">
+            <small th:text=${code} class="text-uppercase ">Item Code</small>
+            <small class="text-uppercase"> <i class="fas fa-balance-scale"> </i> <span th:text=${uom}></span></small>
+        </div>
+    </div>
+</productcard>
+
+<!-- Product Card Large white -->
+<productcard class="card card-outline shadow-none " th:fragment="productcard-lg-white">
+    <div class="card-header ">
+        <span class="info-box-icon "><img src="/dist/temp/shirt1.jpg" class="img-fluid"></span>
+        <strong class="clearfix lead">Peter England Formal [ACTIVE]</strong>
+        <div class="d-flex justify-content-between">
+            <small>SHPTFL48</small>
+            <span class=" text-success">₹ 5,000</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <span>
+                <dt><th> <i class="fas fa-cubes"></i> Group</th></dt>
+                <dd>Garments</dd>
+            </span>
+
+            <span>
+                <dt class="text-right"><i class="fas fa-truck"></i> Stock</dt>
+                <dd class="text-right">5,830</dd>
+            </span>
+            <span>
+                <dt> <i class="fas fa-balance-scale"></i> UOM</dt>
+                <dd class="text-uppercase text-center">Pieces</dd>
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-md-12"><button type="button" class="btn btn-outline-primary btn-block"> Buy Now</button></div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</productcard>

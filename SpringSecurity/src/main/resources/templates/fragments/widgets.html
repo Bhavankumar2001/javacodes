@@ -1,0 +1,102 @@
+<!-- Infobox blue small without shadow -->
+<infobox-sm class="info-box shadow-none" th:fragment="infobox-sm-blue(text,number,class)">
+    <span class="info-box-icon bg-info"><i th:classappend="${class}"></i></span>
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Text</span>
+        <span class="info-box-number" th:text=${number}>None</span>
+    </div>
+</infobox-sm>
+
+<!-- Infobox green small without shadow -->
+<infobox-sm class="info-box shadow-none" th:fragment="infobox-sm-green(text,number,class)">
+    <span class="info-box-icon bg-success"><i th:classappend="${class}"></i></span>
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Text</span>
+        <span class="info-box-number" th:text=${number}>None</span>
+    </div>
+</infobox-sm>
+
+<!-- Infobox Yellow small without shadow -->
+<infobox-sm class="info-box shadow-none" th:fragment="infobox-sm-yellow(text,number,class)">
+    <span class="info-box-icon bg-warning"><i th:classappend="${class}"></i></span>
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Text</span>
+        <span class="info-box-number" th:text=${number}>None</span>
+    </div>
+</infobox-sm>
+<!-- Infobox Red small without shadow -->
+<infobox-sm class="info-box shadow-none" th:fragment="infobox-sm-red(text,number,class)">
+    <span class="info-box-icon bg-danger"><i th:classappend="${class}"></i></span>
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Text</span>
+        <span class="info-box-number" th:text=${number}>None</span>
+    </div>
+</infobox-sm>
+
+<!-- Info box with progress Blue -->
+<infobox-progress class="info-box bg-gradient-info shadow-none" th:fragment="infobox-progress-blue(text,number,percent,description,icon)">
+    <span class="info-box-icon"><i th:classappend="${icon}"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Bookmarks</span>
+        <span class="info-box-number" th:text=${number}>41,410</span>
+
+        <div class="progress" th:if="${percent != ''}">
+            <div class="progress-bar" style="width: 70%" th:style="'width:'+${percent}+'%'"></div>
+        </div>
+        <span class="progress-description" th:text=${description}>
+            70% Increase in 30 Days
+        </span>
+    </div>
+</infobox-progress>
+
+<!-- Info box with progress Green -->
+<infobox-progress class="info-box bg-gradient-success shadow-none" th:fragment="infobox-progress-green(text,number,percent,description,icon)">
+    <span class="info-box-icon"><i th:classappend="${icon}"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Bookmarks</span>
+        <span class="info-box-number" th:text=${number}>41,410</span>
+
+        <div class="progress" th:if="${percent != ''}">
+            <div class="progress-bar" style="width: 70%" th:style="'width:'+${percent}+'%'"></div>
+        </div>
+        <span class="progress-description" th:text=${description}>
+            70% Increase in 30 Days
+        </span>
+    </div>
+</infobox-progress>
+
+<!-- Info box with progress Yellow -->
+<infobox-progress class="info-box bg-gradient-warning shadow-none" th:fragment="infobox-progress-yellow(text,number,percent,description,icon)">
+    <span class="info-box-icon"><i th:classappend="${icon}"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Bookmarks</span>
+        <span class="info-box-number" th:text=${number}>41,410</span>
+
+        <div class="progress" th:if="${percent != ''}">
+            <div class="progress-bar" style="width: 70%" th:style="'width:'+${percent}+'%'"></div>
+        </div>
+        <span class="progress-description" th:text=${description}>
+            70% Increase in 30 Days
+        </span>
+    </div>
+</infobox-progress>
+
+<!-- Info box with progress Red -->
+<infobox-progress class="info-box bg-gradient-danger shadow-none" th:fragment="infobox-progress-red(text,number,percent,description,icon)">
+    <span class="info-box-icon"><i th:classappend="${icon}"></i></span>
+
+    <div class="info-box-content">
+        <span class="info-box-text" th:text=${text}>Bookmarks</span>
+        <span class="info-box-number" th:text=${number}>41,410</span>
+
+        <div class="progress" th:if="${percent != ''}">
+            <div class="progress-bar" style="width: 70%" th:style="'width:'+${percent}+'%'"></div>
+        </div>
+        <span class="progress-description" th:text=${description}>
+            70% Increase in 30 Days
+        </span>
+    </div>
+</infobox-progress >

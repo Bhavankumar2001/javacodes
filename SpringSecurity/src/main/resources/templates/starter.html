@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<div th:replace="fragments/Common-topnav :: head"></div>
+
+<body class="hold-transition layout-top-nav">
+  <div class="wrapper">
+    <div th:replace="fragments/Common-topnav :: navbar"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div th:replace="fragments/Common :: title('<i class=\'fas fa-file-invoice-dollar\'></i>  Purchase / Sales Invoice')"></div>
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container">
+
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div th:replace="fragments/misc :: btn-scroll-top"></div>
+    <div th:replace="fragments/Common-topnav :: control-sidebar"></div>
+    <div th:replace="fragments/Common-topnav :: footer"></div>
+  </div>
+  <!-- ./wrapper -->
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<div th:replace="fragments/Common-topnav :: head"></div>
+
+<body class="hold-transition layout-top-nav">
+  <div class="wrapper">
+    <div th:replace="fragments/Common-topnav :: navbar"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div th:replace="fragments/Common :: title('<i class=\'fas fa-inbox\'></i>  Purchase / Sales orders')"></div>
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container">
+          <!-- ORDERS -->
+          <div class="row">
+            <div class="col-md-12">
+              <div th:replace="fragments/order :: orderlist"></div>
+            </div>
+          </div>
+          <h4 class="mt-4 mb-2">Small</h4>
+          <div class="my-cardbox justify-content-start">
+            <div th:replace="fragments/order :: ordercard-sm-white"></div>
+            <div th:replace="fragments/order :: ordercard-sm-blue"></div>
+            <div th:replace="fragments/order :: ordercard-sm-yellow"></div>
+            <div th:replace="fragments/order :: ordercard-sm-green"></div>
+            <div th:replace="fragments/order :: ordercard-sm-red"></div>
+          </div>    
+          <h4 class="mt-4 mb-2">Medium</h4>
+          <div class="my-cardbox justify-content-start">
+            <div th:replace="fragments/order :: ordercard-white"></div>
+            <div th:replace="fragments/order :: ordercard-blue"></div>
+            <div th:replace="fragments/order :: ordercard-yellow"></div>
+            <div th:replace="fragments/order :: ordercard-green"></div>
+            <div th:replace="fragments/order :: ordercard-red"></div>
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div th:replace="fragments/misc :: btn-scroll-top"></div>
+    <div th:replace="fragments/Common-topnav :: control-sidebar"></div>
+    <div th:replace="fragments/Common-topnav :: footer"></div>
+  </div>
+  <!-- ./wrapper -->
+</body>
+
+</html>

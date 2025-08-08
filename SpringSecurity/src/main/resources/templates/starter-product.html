@@ -1,0 +1,1200 @@
+ Issues Pull Requests Milestones Explore Notifications Create…
+[BagavathKumarSR] Profile and Settings… ThejoEngineering /
+Thejo_BatchProductionProcess Private Watch 2 Star 0 Fork 0 Code Issues
+Pull Requests Releases Wiki Activity Production process web application
+for thejo engineering 187 Commits 1 Branch 0 Tags 24 MiB
+Thejo_BatchProductionProcess/src/main/resources/templates/Batch.html
+1626 lines 47 KiB Raw Permalink Blame History
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- Head -->
+<div th:replace="fragment/Head.html::Head"></div>
+<body class="nav-sm">
+	<div class="container body">
+		<div class="main_container">
+			<!--  SideNav-->
+			<div th:replace="fragment/SideNav.html::SideNav"></div>
+			<!-- top navigation -->
+			<div th:replace="fragment/Header.html::Header"></div>
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="page-title">
+					<div class="title_left">
+						<h3>Batch Production Process</h3>
+					</div>
+					<div class="title_right">
+						<div class="pull-right">
+							<button onclick="window.location.href = '/thejo/batch/find';"
+								type="button" class="btn btn-info">
+								<i class="fa fa-search"></i> Find
+							</button>
+						</div>
+						<div class="pull-right">
+							<button
+								onclick="window.location.href = '/thejo/batch/find/synstatus';"
+								type="button" class="btn btn-info">
+								<i class="fa fa-search"></i> SynStatus
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2></h2>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<div class="row clearfix">
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Area</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<select th:name="area" class="form-control select2" id="Area"
+											required>
+											<option value='' disabled selected>Select Area</option>
+											<option th:each="area : ${AreaList}" id="AreaOption"
+												th:value="${area}" th:text="${area}" th:data="${area}"
+												required></option>
+										</select>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12"></div>
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b> Document Date</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<input type="text" class="form-control has-feedback-left"
+											id="DocDate" placeholder="DD/MM/YYYY"
+											aria-describedby="inputSuccess2Status2"> <span
+											class="fa fa-calendar-o form-control-feedback left"
+											aria-hidden="true"></span> <span id="inputSuccess2Status2"
+											class="sr-only">(success)</span>
+									</div>
+								</div>
+								<br>
+								<div class="row clearfix">
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Shift</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<select th:name="shift" class="form-control select2"
+											id="Shift" required>
+											<option value='' disabled selected>Select Shift</option>
+											<option value="General Shift">1st Shift</option>
+											<option value="Afternoon Shift">2nd Shift</option>
+											<option value="Night Shift">3rd Shift</option>
+										</select>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12"></div>
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Document No</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<div class="form-line">
+											<input type="text"
+												th:value="${DocNum != null} ? (${DocNum != ''} ? ${DocNum +1} : '') : '1' "
+												id="DocNum" class="form-control" readonly />
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row clearfix">
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b> Number of PL </b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<div class="form-line">
+											<input type="number" th:value="${EmpPL}" id="EmpPL"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12"></div>
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Document Status</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<fieldset>
+											<div class="form-line">
+												<input type="text" value="Open" id="DocStatus"
+													class="form-control" readonly />
+											</div>
+										</fieldset>
+									</div>
+								</div>
+								<br>
+								<div class="row clearfix">
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Number of CL </b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<div class="form-line">
+											<input type="number" th:value="${EmpCLS}" id="EmpCLS"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12"></div>
+									<div class="control-label col-md-2 col-sm-2 col-xs-12">
+										<label><b>Supervisor</b></label>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<select class="form-control supervisor select2"
+											id="Supervisor" required>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2></h2>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<div class="table-responsive">
+									<table id="datatable"
+										class="table  table-striped jambo_table bulk_action text-center">
+										<thead>
+											<tr class="headings">
+												<th class="column-title">Add Row</th>
+												<th class="column-title">S.No</th>
+												<th class="column-title">SaleOrder Ref</th>
+												<th class="column-title">F.Production Order Ref</th>
+												<th class="column-title">Customer</th>
+												<th class="column-title">Customer Name</th>
+												<th class="column-title" style="display: none">Item
+													Code</th>
+												<th class="column-title">Item Description</th>
+												<th class="column-title">WHSE Code</th>
+												<th class="column-title">Compound Code</th>
+												<!-- <th class="column-title">Preform Weight</th>
+                                                <th class="column-title">Preform Machine</th> -->
+												<th class="column-title">Curing Machine</th>
+												<th class="column-title">Total Time</th>
+												<th class="column-title">UOM</th>
+												<th class="column-title">Achieved Qty</th>
+												<th class="column-title">JobCardId</th>
+												<th class="column-title">Status</th>
+												<th class="column-title">Remarks</th>
+												<th class="column-title" style="display: none;">PlannedQty</th>
+												<th class="column-title" style="display: none;">CuringItemcode</th>
+												<th class="column-title" style="display: none;">CuringQty</th>
+												<th class="column-title" style="display: none;">CuringWhscode</th>
+												<th class="column-title" style="display: none;">PreformItemcode</th>
+												<th class="column-title" style="display: none;">PreformQty</th>
+												<th class="column-title" style="display: none;">PreformWhscode</th>
+											</tr>
+										</thead>
+										<tbody id="batchsortable">
+											<tr class="batchline">
+												<td><button type="button"
+														class="btn btn-info batchaddrow"
+														onClick="batchAddRow(this)">
+														<i class="fa fa-plus" aria-hidden="true"></i>
+													</button>
+													<button type="button" class="btn btn-danger batchdeleterow"
+														onClick="batchDeleteRow(this)" style="display: none;">
+														<i class="fa fa-minus" aria-hidden="true"></i>
+													</button></td>
+												<td class="sono" id="SoNo">1</td>
+												<td><select class="form-control selectSoRef select2"
+													id="SoRef" onchange="getFGOrderNumList(this)" required>
+												</select></td>
+												<td><select
+													class="form-control selectFGorderRef select2"
+													id="FGProdOrderRef" onchange="getSoRefList(this)" required>
+												</select></td>
+												<td class="customer" id="Customer"></td>
+
+												<td class="customername" id="CustomerName"></td>
+
+												<td class="itemcode" id="ItemCode" style="display: none"></td>
+												<td class="new itemdescription" id="ItemDescription"></td>
+												<td class="warehouse" id="Warehouse"></td>
+												<td><button
+														class="btn btn-success btn-sm batchcompound"
+														onClick="getCompoundCodeList(this)">
+														<i class="fa fa-plus"></i>
+													</button> <!--<a href="#" data-toggle="modal" data-target="#viewModal"
+                                                              class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                                                  --></td>
+												<td><select class="form-control curingmachine select2"
+													id="CuringMachine" required>
+												</select></td>
+												<td><input type="number" class="form-control totaltime"
+													id="TotalTime" value="" placeholder="Total Time" /></td>
+												<td class="uom" id="UOM"></td>
+												<td><input type="number"
+													class="form-control achivedqty" id="AchivedQty" value=""
+													placeholder="Achived Qty" /></td>
+												<td><input type="number" class="form-control jobid"
+													id="JobId" value="" placeholder="Job Id" /></td>
+												<td>Unprocessed</td>
+												<td><textarea class="remark" id="Remark" row="1"
+														cols="1" placeholder="Type here"></textarea></td>
+												<td class="plannedqty" id="PlannedQty"
+													style="display: none;"></td>
+												<td class="curingitemcode" id="CuringItemCode"
+													style="display: none;"></td>
+												<td class="curingqty" id="CuringQty" style="display: none;"></td>
+												<td class="curingwhscode" id="CuringWhsCode"
+													style="display: none;"></td>
+												<td class="preformitemcode" id="PreformItemCode"
+													style="display: none;"></td>
+												<td class="preformqty" id="PreformQty"
+													style="display: none;"></td>
+												<td class="preformwhscode" id="PreformWhsCode"
+													style="display: none;"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="actionBar">
+							<div class="pull-left">
+								<button type="button" value="savebatch" class="btn btn-primary"
+									onClick="newSaveDraft(value)">Save As Draft</button>
+							</div>
+							<div class="pull-right">
+								<button type="button" value="addbatch"
+									onClick="newSaveDraft(value)" class="btn btn-success">
+									<i class="fa fa-plus"></i> Add
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+			<!-- footer content -->
+			<div th:replace="fragment/Footer.html::Footer"></div>
+		</div>
+	</div>
+	<div id="vad"></div>
+	<div class="modal fade compoundbox" id="modal-default1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Add Compound Code</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table id="HeaderSubTable"
+							class="table table-bordered table-hover table-valign-middle"
+							style="font-size: 12px;">
+							<thead>
+								<tr class="headings">
+									<!-- <th style="color: white;">S.No</th> -->
+									<th>Compound Code</th>
+									<th>PreForm Machine</th>
+									<th>PreForm Weight</th>
+									<th style="display: none;">Compound WhsCode</th>
+									<th>Add Row</th>
+								</tr>
+							</thead>
+							<tbody id="sortable">
+								<tr class="orderline">
+									<td><select
+										class="form-control nselect compoundcode1 select2"
+										id="CompoundCode" onchange="getMachine(this)" required></select>
+									</td>
+									<td><select
+										class="form-control nselect  preformmachine1 select2"
+										id="PreFormMachine" required></select></td>
+									<td><input type="text" class="form-control preformweight"></td>
+									<td><button type="button" class="btn btn-info addrow"
+											onClick="compoundAddRow(this,1)">
+											<i class="fa fa-plus" aria-hidden="true"></i>
+										</button>
+										<button type="button" class="btn btn-danger deleterow"
+											onClick="compoundDeleteRow(this)" style="display: none;">
+											<i class="fa fa-minus" aria-hidden="true"></i>
+										</button></td>
+									<td style="display: none;"><select
+										class="form-control nselect compoundwhscode1 select2"
+										id="CompoundWhsCode"></select></td>
+								</tr>
+							</tbody>
+							<!-- <script type="text/javascript">
+     $(document).ready(function() { $('#HeaderSubTable').DataTable();});
+</script>-->
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-success"
+						onClick="saveCompound(this)">
+						<i class="fa fa-plus"></i> Add
+					</button> -->
+					<a href="#" type="button" class="btn btn-danger"
+						data-dismiss="modal"><i class="fa fa-times"></i> Close</a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog7 -->
+	</div>
+	<!-- --------------------- Batch Process (Add/Remove Row)------------------------ -->
+	<script>
+// CompoundCode Row Add and Remove
+function batchAddRow(ele) {
+var totalBatchLine = 1;
+var hideFieldsBatchLineCount;
+/* var totalOrderLine = 1;
+$(document).ready(function () {
+var totalOrderLine = 1;
+}); */
+$(ele).hide();
+$(ele).closest('.batchline').find('.batchdeleterow').show();
+var BatchLineCount = totalBatchLine;
+hideFieldsBatchLineCount = BatchLineCount;
+var sorefString = app.misc.getOptionsForSalesOrderRefernece(app.data.soref);
+var prodnoString = app.misc.getOptionsForFGProdNo(app.data.fgprodnum);
+var machine = app.misc.getOptionsForMachine(app.data.machine);
+var tds = `<tr class="batchline">
+<td><button type="button" class="btn btn-info batchaddrow" onClick="batchAddRow(this)">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-danger batchdeleterow" onClick="batchDeleteRow(this)"
+     style="display:none;">
+    <i class="fa fa-minus" aria-hidden="true"></i>
+    </button></td>
+<td class="sono" id="SoNo"></td>
+<td><select class="form-control selectSoRef select2"
+onchange="getFGOrderNumList(this)" required>${sorefString}
+</select></td>
+<td><select
+class="form-control selectFGorderRef select2"
+id="FGProdOrderRef" onchange="getSoRefList(this)" required>${prodnoString}
+</select></td>
+<td class="customer" id="Customer"></td>
+<td class="customername" id="CustomerName"></td>
+<td class="itemcode" id="ItemCode"></td>
+<td class="itemdescription" id="ItemDescription"></td>
+<td class="warehouse" id="Warehouse"></td>
+<td><button class="btn btn-success btn-sm batchcompound" onClick="getCompoundCodeList(this)">
+<i class="fa fa-plus"></i></button>
+<!-- <a href="#" data-toggle="modal" data-target="#viewModal"
+         class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a> -->
+</td>
+     <td><select class="form-control curingmachine select2"
+id="CuringMachine"  required>${machine}</td>
+<td><input type="number" class="form-control totaltime" id="TotalTime" placeholder="Total Time" /></td>
+<td class="uom" id="UOM"></td>
+<td><input type="number" class="form-control achivedqty" id="AchivedQty" placeholder="Achived Qty" /></td>
+<td><input type="number" class="form-control jobid" id="JobId" placeholder="Job Id" /></td>
+<td>Unprocessed</td>
+<td> <textarea class="remark" id="Remark" row="1" cols="1" placeholder="Type here"></textarea></td>
+<td class="plannedqty" id="PlannedQty" style="display:none;"></td>
+<td class="curingitemcode" id="CuringItemCode" style="display:none;"></td>
+<td class="curingqty" id="CuringQty" style="display:none;"></td>
+<td class="curingwhscode" id="CuringWhsCode" style="display:none;"></td>
+<td class="preformitemcode" id="PreformItemCode" style="display:none;"></td>
+<td class="preformqty" id="PreformQty" style="display:none;"></td>
+<td class="preformwhscode" id="PreformWhsCode" style="display:none;"></td>
+</tr>`;
+/* $('select').change(function() {
+  
+   var value = $(this).val();
+  
+   $(this).siblings('select').children('option').each(function() {
+   if ( $(this).val() === value ) {
+   $(this).attr('disabled', true).siblings().removeAttr('disabled');  
+   }
+   });
+  
+   }); */
+/* $("select.selectSoRef").change(function () {
+$("select.selectSoRef option[value='" + $(this).data('index') + "']").prop('disabled', false);
+$(this).data('index', this.value);
+$("select.selectSoRef option[value='" + this.value + "']:not([value=''])").prop('disabled', true);
+$(this).find("option[value='" + this.value + "']:not([value=''])").prop('disabled', false);
+}); */
+$(ele).closest('#batchsortable').append(tds);
+totalBatchLine = totalBatchLine + 1;
+$(document).on('change', '.selectSoRef', function (e, e1) {
+manage_opns();
+});
+manage_opns();
+$('.select2').select2();
+var modelindex;
+$("td.sono").each(function (i, v) {
+$(v).text(i + 1);
+modelindex=i+1;
+});
+//add dyamic model popd
+var getdiv = jQuery('#vad');
+var ss="<div class='modal fade compoundbox' id='modal-default"+modelindex+"'><div class='modal-dialog modal-lg'> <div class='modal-content'> <div class='modal-header'> <h4>Add Compound Code</h4> </div> <div class='modal-body'> <div class='table-responsive'> <table id='HeaderSubTable' class='table table-bordered table-hover table-valign-middle'style='font-size: 12px;'> <thead> <tr class='headings'> <!-- <th style='color: white;'>S.No</th> --> <th>Compound Code</th> <th>PreForm Machine</th> <th>PreForm Weight</th>  <th style='display:none;'>Compound WhsCode</th><th style='display:none;'>Compound Qty</th> <th>Add Row</th> </tr> </thead> <tbody id='sortable'> <tr class='orderline'> <td><select class='form-control nselect compoundcode"+modelindex+" select2' id='CompoundCode' onchange='getMachine(this)' required> </td> <td> <select class='form-control  nselect preformmachine"+modelindex+" select2' id='PreFormMachine' required> </select> </td> <td><input type='text'  class='form-control preformweight'></td><td><button type='button' class='btn btn-info addrow'onClick='compoundAddRow(this,"+modelindex+")'> <i class='fa fa-plus' aria-hidden='true'></i> </button> <button type='button' class='btn btn-danger deleterow'onClick='compoundDeleteRow(this)' style='display: none;'> <i class='fa fa-minus' aria-hidden='true'></i> </button></td> <td style='display:none;'><select class='form-control nselect compoundwhscode"+modelindex+" select2' id='CompoundWhsCode'></td> <td style='display:none;'><select  class='form-control nselect compoundqty"+modelindex+" select2' id='CompoundQty'></td>  </tr> </tbody> </table> </div> </div> <div class='modal-footer'> <a href='#' type='button' class='btn btn-danger' data-dismiss='modal'><i class='fa fa-times'></i> Close</a> </div> </div> </div> </div>"
+getdiv.append(ss);
+}
+</script>
+	<script>
+//Deleting the Appended Row
+function batchDeleteRow(ele) {
+$(ele).closest('.batchline').remove();
+var lastBatchLine = $('#batchsortable').find('.batchline').last();
+$(lastBatchLine).find('.batchaddrow').show();
+//If there is only one orderLine then hide the delete button
+if ($('#batchsortable').find('.batchline').length < 2) {
+$(lastBatchLine).find('.batchdeleterow').hide();
+}
+// hideFields();
+$('select.select2').select2();
+$("td.sono").each(function (i, v) {
+$(v).text(i + 1);
+});
+}
+</script>
+	<!-- ---------------------/. Batch Process (Add/Remove Row)------------------------ -->
+	<script type="text/javascript">
+function manage_opns() {
+$("select.selectSoRef option").attr('disabled', false);
+$("select.selectSoRef").each(
+function (i, el) {
+var cur_val = $(el).val();
+if (cur_val != '') {
+$(
+"select.selectSoRef option[value='"
++ cur_val + "']").attr('disabled',
+false);
+$(el).find("option[value='" + cur_val + "']").attr(
+'disabled', false);
+}
+});
+}
+</script>
+	<script>
+function selectRefresh() {
+$('.batchline .select2').select2({
+//-^^^^^^^^--- update here
+tags: true,
+placeholder: "Select an Option",
+allowClear: true,
+width: '100%'
+});
+}
+</script>
+	<!-- --------------------- Compound Process (Add/Remove Row)------------------------ -->
+	<script>
+// CompoundCode Row Add and Remove
+function compoundAddRow(ele,val) {
+var totalOrderLine = 1;
+var hideFieldsorderLineCount;
+/* var totalOrderLine = 1;
+$(document).ready(function () {
+var totalOrderLine = 1;
+}); */
+$(ele).hide();
+$(ele).closest('.orderline').find('.deleterow').show();
+var orderLineCount = totalOrderLine;
+hideFieldsorderLineCount = orderLineCount;
+var optionString = app.misc.getOptionsForCompoundCode(app.data.compoundList);
+var machine = app.misc.getOptionsForMachine(app.data.machine);
+var warehouse = app.misc.getOptionsForCompoundWhscode(app.data.compoundList);
+console.log(optionString);
+// var machineString = app.misc.getOptionsForPreformMachine(app.data.machineList);
+// var tds = "<tr class='orderline'><td><select class='form-control nselect compoundcode"+val+" select2' id='CompoundCode' onchange='getMachine(this)' required>'${optionString}'</select></td><td><select class='form-control nselect  preformmachine"+val+" select2' id='PreFormMachine' required>'${machine}'</select></td><td><button type='button' class='btn btn-info addrow' onClick='compoundAddRow(this)'><i class='fa fa-plus' aria-hidden='true'></i></button><button type='button' class='btn btn-danger deleterow' onClick='compoundDeleteRow(this)' style='display: none;'><i class='fa fa-minus' aria-hidden='true'></i></button></td><td style='display:none;'><select  class='form-control nselect compoundwhscode"+val+" select2' id='CompoundWhsCode' >'${warehouse}'</select></td></tr>";
+var tds="<tr class='orderline'> <td><select class='form-control nselect compoundcode"+val+"  select2' id='CompoundCode' onchange='getMachine(this)' required>"+optionString+"</select> </td> <td style='display:none;'><input type='text'  class='form-control compoundcodetext' id='CompoundCodeText'></td> <td><select class='form-control nselect  preformmachine"+val+"  select2' id='PreFormMachine' required>"+machine+"</select> </td> <td style='display:none;'><input type='text'  class='form-control preformmachinetext' id='PreFormMachineText'></td> <td><input type='text'  class='form-control preformweight'></td> <td><button type='button' class='btn btn-info addrow' onClick='compoundAddRow(this)'> <i class='fa fa-plus' aria-hidden='true'></i> </button> <button type='button' class='btn btn-danger deleterow' onClick='compoundDeleteRow(this)' style='display: none;'> <i class='fa fa-minus' aria-hidden='true'></i> </button></td> <td style='display:none;'><select  class='form-control nselect compoundwhscode"+val+" select2' id='CompoundWhsCode' >"+warehouse+"</select></td> <td style='display:none;'><input type='text'  class='form-control compoundwhscodetext' id='CompoundWhsCodeText'></td> <td style='display:none;'><select  class='form-control nselect compoundqty select2' id='CompoundQty' ></select></td> </tr>";
+/* <button type="button" class="btn btn-info addrow">
+<i class="fa fa-plus" aria-hidden="true"  ></i> </button>
+<button type="button" class="btn btn-danger deleterow"> <i class="fa fa-minus" aria-hidden="true"  ></i></button> */
+$(ele).closest('#sortable').append(tds);
+totalOrderLine = totalOrderLine + 1;
+$('.select2').select2();
+}
+</script>
+	<script>
+//Deleting the Appended Row
+function compoundDeleteRow(ele) {
+$(ele).closest('.orderline').remove();
+var lastOrderLine = $('#sortable').find('.orderline').last();
+$(lastOrderLine).find('.addrow').show();
+//If there is only one orderLine then hide the delete button
+if ($('#sortable').find('.orderline').length < 2) {
+$(lastOrderLine).find('.deleterow').hide();
+}
+// hideFields();
+}
+</script>
+	<!-- ---------------------/. Compound Process (Add/Remove Row)------------------------ -->
+	<script>
+function getSoRefList(ele) {
+var FgOrderNo = $(ele).closest('tr td').find('.selectFGorderRef :selected').val();
+            var setSoNum;
+$.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'GET',
+url: '/autocomplete/sorefList/'+ FgOrderNo,
+// data : JSON.stringify(post),
+success: function (data) {
+//Type -1
+var customeroptions ;
+                   
+                    // customeroptions = "<option value=''disabled selected>--Sales No --</option>";
+$.each(data, function (index, value) {
+customeroptions = customeroptions
++ '<option value=' + value.OriginNum + '>'
++ value.OriginNum + '</option>';
+});
+                    $(ele).closest('tr').find('.selectSoRef').html("");
+            $(ele).closest('tr').find('.selectSoRef').empty().append(customeroptions);
+getShowData(ele);
+},
+error: function (data) {
+}
+});
+}
+</script>
+	<script>
+function getFGOrderNumList(ele) {
+var soref = $(ele).closest('tr td').find('.selectSoRef :selected').val();
+            var setDocNum ;
+$.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'GET',
+url: '/autocomplete/fgordernoList/' + soref,
+// data : JSON.stringify(post),
+success: function (data) {
+//Type -1
+// var customeroptions = "<option value=''>Select Your FGOrder No</option>";
+//var customeroptions = "<option value=''disabled selected>--FGOrder No --</option>";
+                 var customeroptions;
+               
+$.each(data, function (index, value) {
+                      
+customeroptions = customeroptions + '<option value=' + value.DocNum + '>'+ value.DocNum + '</option>';
+});
+                    $(ele).closest('tr ').find('.selectFGorderRef').html("");
+$(ele).closest('tr ').find('.selectFGorderRef').empty().append().html(customeroptions);
+getShowData(ele);
+},
+error: function (data) {
+}
+});
+}
+</script>
+	<script>
+function getCompoundCodeList(ele) {
+            $('#modal-default'+getSoNo+'').modal('hide');
+                 var getSoNo = $(ele).closest('tr').find('#SoNo').html();
+                 var compoundRows = $('#modal-default'+getSoNo+'').find('table>tbody>tr');
+var CompoundItemList = [];
+              // Compound List
+                  $.each(compoundRows, function (index, value) {
+var PreformWeight = $(value).find('.preformweight').val();
+if (PreformWeight != '' && PreformWeight != null && PreformWeight != "undefined")
+{
+CompoundItemList.push(PreformWeight);
+}
+});
+                 // compound list open
+                 if(jQuery.isEmptyObject(CompoundItemList)) {
+             var salesorderNo = $(ele).closest('tr').find('.selectSoRef').val();
+var FGprodNo = $(ele).closest('tr').find('.selectFGorderRef').val();
+if (salesorderNo == '' || salesorderNo == null || salesorderNo == "undefined" ||
+FGprodNo == '' || FGprodNo == null || FGprodNo == "undefined")
+     {
+var myhtml = document.createElement("div");
+myhtml.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> Mandatory for SalesOrder Ref and  F.Production Order Ref </span>";
+swal({
+title: "Warning",
+content: myhtml,
+icon: "warning",
+closeOnClickOutside: false,
+button: true,
+});
+}else {
+FGprodNo = parseInt(FGprodNo);
+         $.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'GET',
+url: '/autocomplete/compoundCode/' + FGprodNo,
+// data : JSON.stringify(post),
+success: function (data) {
+//Type -1
+app.data.compoundList = data;
+var customeroptions = "<option value='' disabled selected>Compound Code</option>";
+var compoundwarehouse="";
+$.each(data, function (index, value) {
+customeroptions = customeroptions
++ '<option value=' + value.CompoundCode + '>'
++ value.CompoundCode + '</option>';
+                        compoundwarehouse = compoundwarehouse
++ '<option value=' + value.Warehouse + '>'
++ value.Warehouse + '</option>';
+});
+if(data.length > 0){
+  $('.compoundcode'+getSoNo+'').html(customeroptions);
+  $('.compoundwhscode'+getSoNo+'').html(compoundwarehouse);
+         //  getPreformMachine(ele);
+$.ajax({
+method: 'GET',
+url: "/autocomplete/machine",
+success: function (data) {
+app.data.preformmachine =data;
+Group4(data);
+}
+});
+let Group4 = (dataDB1) => {
+var machine = "<option value=''disabled selected>-- Machine --</option>";
+dataDB1.forEach((dataDB1) => {
+machine += `<option value="${dataDB1.VisResCode}">${dataDB1.ResName}</option>`
+});
+$('.preformmachine'+getSoNo+'').html(machine);
+};
+  $('#modal-default'+getSoNo+'').modal('show');
+                      $('#modal-default'+getSoNo+'').modal();
+}else{
+var myhtml1 = document.createElement("div");
+myhtml1.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> Compound Code Not Found ! </span>";
+swal({
+title: "Warning",
+content: myhtml1,
+icon: "warining",
+closeOnClickOutside: false,
+button: true,
+});
+}
+},
+error: function (data) {
+                         var myhtml1 = document.createElement("div");
+myhtml1.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> CompoundCode Error: "+data+" ! </span>";
+swal({
+title: "Error",
+content: myhtml1,
+icon: "error",
+closeOnClickOutside: false,
+button: true,
+});
+}
+});
+                  
+  }
+            } else { // compound list end
+            $('#modal-default'+getSoNo+'').modal('show');
+            $('#modal-default'+getSoNo+'').modal();
+   
+            }       
+}
+</script>
+	<script>
+function getMachine(ele){
+$.ajax({
+method: 'GET',
+url: "/autocomplete/machine",
+success: function (data) {
+app.data.preformmachine =data;
+Group4(data);
+}
+});
+let Group4 = (dataDB1) => {
+var machine = "<option value=''disabled selected>-- Machine --</option>";
+dataDB1.forEach((dataDB1) => {
+machine += `<option value="${dataDB1.VisResCode}">${dataDB1.ResName}</option>`
+});
+$('.preformmachine').html(machine);
+};
+}
+</script>
+	<script>
+function getShowData(ele) {
+    
+        var  SoRef = $(ele).closest('tr').find('.selectSoRef').val();
+var FgOrderNo = $(ele).closest('tr').find('.selectFGorderRef').val();
+       var sono = $(ele).closest('tr').find('.sono').val();
+       if (FgOrderNo != '' && FgOrderNo != null && FgOrderNo != "undefined" &&
+          //     Machine != '' && Machine != null && Machine != "undefined" &&
+               SoRef != '' && SoRef != null && SoRef != "undefined" ){
+$.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'GET',
+url: '/autocomplete/fgordernoData/' + FgOrderNo,
+success: function (data) {
+if(data.length > 0){
+$.each(data, function (index, value) {
+                        var ItemCode = "";
+ItemCode = value.FGItemCode;
+$(ele).closest('tr ').find('#ItemCode').html(ItemCode);
+var ItemDescription = "";
+ItemDescription = value.ProdName;
+$(ele).closest('tr ').find('#ItemDescription').html(ItemDescription);
+var CardCode = "";
+CardCode = value.CardCode;
+$(ele).closest('tr ').find('#Customer').html(CardCode);
+var Warehouse = "";
+Warehouse = value.Warehouse;
+$(ele).closest('tr ').find('#Warehouse').html(Warehouse);
+var Uom = "";
+Uom = value.Uom;
+$(ele).closest('tr ').find('#UOM').html(Uom);
+var Status = "";
+Status = value.Status;
+$(ele).closest('tr ').find('#Status').html(Status);
+var PlannedQty = "";
+PlannedQty = value.PlannedQty;
+$(ele).closest('tr ').find('#PlannedQty').html(PlannedQty);
+                        var CuringItemCode = "";
+CuringItemCode = value.CuringItemCode;
+$(ele).closest('tr ').find('#CuringItemCode').html(CuringItemCode);
+                        var CuringQty = "";
+CuringQty = value.CuringQty;
+$(ele).closest('tr ').find('#CuringQty').html(CuringQty);
+var CuringWarehouse = "";
+CuringWarehouse = value.CuringWhsCode;
+$(ele).closest('tr ').find('#CuringWhsCode').html(CuringWarehouse);
+                        var PreformItemCode = "";
+PreformItemCode = value.PreformItemCode;
+$(ele).closest('tr ').find('#PreformItemCode').html(PreformItemCode);
+                        var PreformQty = "";
+PreformQty = value.PreformQty;
+$(ele).closest('tr ').find('#PreformQty').html(PreformQty);
+var PreformWarehouse = "";
+PreformWarehouse = value.PreformWhsCode;
+$(ele).closest('tr ').find('#PreformWhsCode').html(PreformWarehouse);
+});
+}else {
+$.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'GET',
+url: '/autocomplete/fgordernoData2/' + FgOrderNo,
+success: function (data) {
+if(data.length > 0){
+$.each(data, function (index, value) {
+                       var ItemCode = "";
+ItemCode = value.FGItemCode;
+$(ele).closest('tr ').find('#ItemCode').html(ItemCode);
+var ItemDescription = "";
+ItemDescription = value.ProdName;
+$(ele).closest('tr ').find('#ItemDescription').html(ItemDescription);
+var CardCode = "";
+CardCode = value.CardCode;
+$(ele).closest('tr ').find('#Customer').html(CardCode);
+var CardName = "";
+CardName = value.CardName;
+$(ele).closest('tr ').find('#CustomerName').html(CardName);
+var Warehouse = "";
+Warehouse = value.Warehouse;
+$(ele).closest('tr ').find('#Warehouse').html(Warehouse);
+var Uom = "";
+Uom = value.Uom;
+$(ele).closest('tr ').find('#UOM').html(Uom);
+var Status = "";
+Status = value.Status;
+$(ele).closest('tr ').find('#Status').html(Status);
+var PlannedQty = "";
+PlannedQty = value.PlannedQty;
+$(ele).closest('tr ').find('#PlannedQty').html(PlannedQty);
+                        var CuringItemCode = "";
+CuringItemCode = value.CuringItemCode;
+$(ele).closest('tr ').find('#CuringItemCode').html(CuringItemCode);
+                        var CuringQty = "";
+CuringQty = value.CuringQty;
+$(ele).closest('tr ').find('#CuringQty').html(CuringQty);
+var CuringWarehouse = "";
+CuringWarehouse = value.CuringWhsCode;
+$(ele).closest('tr ').find('#CuringWhsCode').html(CuringWarehouse);
+                        var PreformItemCode = "";
+PreformItemCode = value.PreformItemCode;
+$(ele).closest('tr ').find('#PreformItemCode').html(PreformItemCode);
+                        var PreformQty = "";
+PreformQty = value.PreformQty;
+$(ele).closest('tr ').find('#PreformQty').html(PreformQty);
+var PreformWarehouse = "";
+PreformWarehouse = value.PreformWhsCode;
+$(ele).closest('tr ').find('#PreformWhsCode').html(PreformWarehouse);
+});
+}else {
+var myhtml = document.createElement("div");
+myhtml.innerHTML = "<span style=color:blue><b> Your Production Order No is " + FgOrderNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> This production order no item is not found  </span>";
+swal({
+title: "Warning",
+content: myhtml,
+icon: "warning",
+closeOnClickOutside: false,
+button: true,
+});
+}
+},
+      error: function (data) {}
+});
+}
+},
+error: function (data) {}
+});
+}
+}
+</script>
+	<script>
+function newSaveDraft(keyvalue){
+// Header Fields
+var DocNo = $("#DocNum").val();
+var DocDate = formatSimpleDate1($("#DocDate").val());
+var DocStatus = $("#DocStatus").val();
+var Supervisor = $("#Supervisor :selected").val();
+var EmpPL = $("#EmpPL").val();
+var EmpCLS = $("#EmpCLS").val();
+var Area = $('#Area :selected').val();
+var WorkShift = $('#Shift :selected').val();
+var linestatus;
+if(keyvalue == "savebatch"){
+	linestatus = "0";
+       }else if(keyvalue == "addbatch"){
+    	   linestatus = '1'; 
+       }
+if (DocNo == '' || DocNo == null || DocNo == "undefined" ||
+DocDate == '' || DocDate == null || DocDate == "undefined" ||
+DocStatus == '' || DocStatus == null || DocStatus == "undefined" ||
+Supervisor == '' || Supervisor == null || Supervisor == "undefined" ||
+EmpPL == '' || EmpPL == null || EmpPL == "undefined" ||
+EmpCLS == '' || EmpCLS == null || EmpCLS == "undefined" ||
+Area == '' || Area == null || Area == "undefined" ||
+WorkShift == '' || WorkShift == null || WorkShift == "undefined")
+{ //header if
+var myhtmlalert = document.createElement("div");
+myhtmlalert.innerHTML = "<span style=color:brown><b> Please fill your header fields ! </b> </span><br/><br/>";
+swal({
+title: "Warning",
+content: myhtmlalert,
+icon: "warning",
+closeOnClickOutside: false,
+button: true,
+});
+} else {  //header else
+var getRows = $('#datatable>tbody>tr');
+var LineItemList = [];
+$.each(getRows, function (index, value) {
+   var getSoNo = $(value).closest('tr').find('#SoNo').html();
+var SoRef = $(value).find('.selectSoRef').val();
+var FGProdOrderRef = $(value).find('.selectFGorderRef').val();
+var Customer = $(value)[0].cells[4].innerHTML;
+var ItemCode = $(value)[0].cells[5].innerHTML;
+var ItemName = $(value)[0].cells[6].innerHTML;
+var Warehouse = $(value)[0].cells[7].innerHTML;
+var CuringMachine = $(value).find('.curingmachine').val();
+var TotalTime = $(value).find(".totaltime").val();
+var AchivedQty = $(value).find(".achivedqty").val();
+// var Status = $(value)[0].cells[14].innerHTML;
+var Uom = $(value)[0].cells[11].innerHTML;
+var JobId = $(value).find(".jobid").val();
+var Remark = $(value).find(".remark").val();                    
+//Line
+if (getSoNo == '' || getSoNo == null || getSoNo == "undefined" ||
+SoRef == '' || SoRef == null || SoRef == "undefined" ||
+FGProdOrderRef == '' || FGProdOrderRef == null || FGProdOrderRef == "undefined" ||
+Customer == '' || Customer == null || Customer == "undefined" ||
+ItemCode == '' || ItemCode == null || ItemCode == "undefined" ||
+ItemDescription == '' || ItemDescription == null || ItemDescription == "undefined" ||
+Warehouse == '' || Warehouse == null || Warehouse == "undefined" ||
+CuringMachine == '' || CuringMachine == null || CuringMachine == "undefined" ||
+TotalTime == '' || TotalTime == null || TotalTime == "undefined" ||
+AchivedQty == '' || AchivedQty == null || AchivedQty == "undefined" ||
+// Status == '' || Status == null || Status == "undefined" ||
+JobId == '' || JobId == null || JobId == "undefined" ||
+Uom == '' || Uom == null || Uom == "undefined") { //line if
+var myhtml1 = document.createElement("div");
+myhtml1.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> Please fill this row entries! </span>";
+swal({
+title: "Warning",
+content: myhtml1,
+icon: "warning",
+closeOnClickOutside: false,
+button: true,
+});
+}else { // line else
+var soo=index+1;
+var achivedQty = $(value).find(".achivedqty").val();;
+                    var compoundRows = $('#modal-default'+soo+'').find('table>tbody>tr');
+var CompoundItemList = [];
+                   $.each(compoundRows, function (index, value) {
+                    var CompoundCode =$(value).find('.compoundcode'+soo+'').val();
+var PreformMachine =$(value).find('.preformmachine'+soo+'').val();
+var PreformWeight = parseFloat($(value).find('.preformweight').val());
+var CompoundWhs = $(value).find('.compoundwhscode'+soo+'').val();
+if (CompoundCode == '' || CompoundCode == null || CompoundCode == "undefined" ||
+PreformMachine == '' || PreformMachine == null || PreformMachine == "undefined" ||
+PreformWeight == '' || PreformWeight == null || PreformWeight == "undefined" || PreformWeight == '0' )
+        { // compound if
+var myhtml = document.createElement("div");
+myhtml.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> Please fill batch compound </span>";
+swal({
+title: "Warning",
+content: myhtml,
+icon: "warning",
+closeOnClickOutside: false,
+button: true,
+});
+} else { // compound else
+var totalweight = parseFloat(achivedQty) * parseFloat(PreformWeight);
+var compounditems = {
+"compoundCode": CompoundCode,
+"preformMachine" : PreformMachine,
+"preformWeight" : totalweight.toFixed(2),
+"compWhsCode" :  CompoundWhs
+}
+CompoundItemList.push(compounditems);
+                          }
+              
+                    });
+if (jQuery.isEmptyObject(CompoundItemList)) {
+var myhtml = document.createElement("div");
+myhtml.innerHTML = "<span style=color:blue><b> Your Serial No is " + getSoNo + " ! </b> </span><br/><br/>" +
+"<span style=color:red> Please fill batch compound </span>";
+swal({
+title: "Failed",
+content: myhtml,
+icon: "error",
+closeOnClickOutside: false,
+button: true,
+});
+}else {
+    var curingQty = $(value).find(".curingqty").html();
+                            var curingqty = parseFloat(curingQty) * parseFloat(achivedQty) ;
+                            var preformQty = $(value).find(".preformqty").html();
+                            var preformqty = parseFloat(preformQty) * parseFloat(achivedQty) ;
+                           
+var lineitems = {
+"saleNo": SoRef,
+"prodNo": FGProdOrderRef,
+"customer": Customer,
+"fgItemCode":ItemCode ,
+"fgItemName": ItemName,
+"fgwhsCode": Warehouse,
+"curingMachine": CuringMachine,
+"totalTime": TotalTime,
+"achievedQty": AchivedQty,
+"status": "0",
+"uom": Uom,
+"jobCardNo": JobId,
+"remarks": Remark,
+//Additional values
+//"fgQuantity" : $(value).find(".plannedqty").html(),
+"fgQuantity" : AchivedQty,
+"curingItemCode" : $(value).find(".curingitemcode").html(),
+"curingQty" : curingqty.toFixed(2),
+"curingWhsCode" : $(value).find(".curingwhscode").html(),
+"preformQty" :  preformqty.toFixed(2),
+"preformItemCode" : $(value).find(".preformitemcode").html(),
+"preformWhsCode" : $(value).find(".preformwhscode").html(),
+"batchComponent": CompoundItemList,
+}
+LineItemList.push(lineitems);
+}
+}
+});
+              //Post data
+             if(jQuery.isEmptyObject(LineItemList))
+            {
+                var myhtm5 = document.createElement("div");
+myhtm5.innerHTML = "<span style=color:red> Can't found anyone row orders ! </span>";
+swal({
+title: "Failed",
+content: myhtm5,
+icon: "error",
+closeOnClickOutside: false,
+button: true,
+});
+            }else {
+           var myhtml = document.createElement("div");
+myhtml.innerHTML = "<span style=color:blue><b> Your Batch Saving is Processing! </b></span></br></br>" +
+"<span style=color:black> Please Wait... </span>";
+swal({
+content: myhtml,
+closeOnClickOutside: false,
+button: false,
+});
+             var post = {
+"docDate": DocDate,
+"docstatus": DocStatus,
+"supervisor": Supervisor,
+"employeePl": parseInt(EmpPL),
+"empployeeCls": parseInt(EmpCLS),
+"area": Area,
+"shift": WorkShift,
+"synStatus":linestatus,
+"batchLine": LineItemList
+};
+var batchList = [];
+batchList.push(post);
+                    console.log(batchList);
+                 
+                    var posturl;
+                   if(keyvalue == "savebatch"){
+                  posturl = '/thejo/batch/add';
+                     }else if(keyvalue == "addbatch"){
+                   posturl = '/thejo/batch/productionAdd'; 
+                     }
+        //Post Function
+                $.ajax({
+contentType: 'application/json; charset=utf-8',
+dataType: 'json',
+type: 'POST',
+url: posturl,
+data: JSON.stringify(batchList),
+success: function (data) {
+var myhtml2 = document.createElement("div");
+myhtml2.innerHTML = "<span style=color:green> Your Batch Saved Successfully ! </span><br/><br/>" +
+"<span style=color:green> Your Document No is " + data + " </span>";
+swal({
+title: "SUCCESS",
+content: myhtml2,
+icon: "success",
+closeOnClickOutside: false,
+type: "success"
+}).then(okay => {
+if (okay) {
+window.location.reload();
+}
+});
+},
+error: function (data) {
+if (data.status == 401) {
+var myhtml3 = document.createElement("div");
+myhtml3.innerHTML = "<span style=color:red> Your Branch Mapping User is Unavailable ! </span>";
+swal({
+title: "Failed",
+content: myhtml3,
+icon: "error",
+closeOnClickOutside: false,
+button: true,
+});
+} else {
+var myhtm4 = document.createElement("div");
+myhtm4.innerHTML = "<span style=color:red> Your Batch Not Saved ! </span>";
+swal({
+title: "Failed",
+content: myhtm4,
+icon: "error",
+closeOnClickOutside: false,
+button: true,
+});
+}
+}
+});
+           }
+            
+}
+}
+</script>
+	<!-- JsLink -->
+	<div th:replace="fragment/JsLink.html::JsLink"></div>
+</body>
+<script type="text/javascript">
+$.ajax({
+method: 'GET',
+url: "/autocomplete/salesDocNum",
+success: function (data) {
+app.data.soref =data;
+Group(data);
+}
+});
+let Group = (dataDB1) => {
+var salesNo = "<option value=''disabled selected>-- SalesNO --</option>";
+var salesNo1 = '';
+dataDB1.forEach((dataDB1) => {
+salesNo += `<option value="${dataDB1.OriginNum}">${dataDB1.OriginNum}</option>`
+});
+$('.selectSoRef').empty().append(salesNo);
+};
+</script>
+<script type="text/javascript">
+$.ajax({
+method: 'GET',
+url: "/autocomplete/machine",
+success: function (data) {
+app.data.machine =data;
+Group3(data);
+}
+});
+let Group3 = (dataDB1) => {
+var machine = "<option value=''disabled selected>-- Machine --</option>";
+dataDB1.forEach((dataDB1) => {
+machine += `<option value="${dataDB1.VisResCode}">${dataDB1.ResName}</option>`
+});
+$('.curingmachine').empty().append(machine);
+};
+</script>
+<script type="text/javascript">
+$.ajax({
+method: 'GET',
+url: "/autocomplete/FGProdNum",
+success: function (data) {
+app.data.fgprodnum =data;
+Group1(data);
+}
+});
+let Group1 = (dataDB1) => {
+var prodNum = "<option value=''disabled selected>-- Production NO --</option>";
+dataDB1.forEach((dataDB1) => {
+prodNum += `<option value="${dataDB1.DocNum}">${dataDB1.DocNum}</option>`
+});
+$('.selectFGorderRef').empty().append(prodNum);
+};
+</script>
+<script type="text/javascript">
+$.ajax({
+method: 'GET',
+url: "/autocomplete/employee",
+success: function (data) {
+Group6(data);
+}
+});
+let Group6 = (dataDB1) => {
+var prodNum = "<option value=''disabled selected>-- Name --</option>";
+dataDB1.forEach((dataDB1) => {
+prodNum += `<option value="${dataDB1.EMP_NAME}">${dataDB1.EMP_NAME}</option>`
+});
+$('#Supervisor').empty().append(prodNum);
+};
+</script>
+<script>
+function saveCompound(ele)
+{
+var compoundRows = $(ele).closest('tr');
+$.each(compoundRows, function (index, value) {
+    var CompoundCode =$(value).find('.compoundcode').val();
+var PreformMachine =$(value).find('.preformmachine').val();
+var PreformWeight = parseFloat($(value).find('.preformweight').val());
+var CompoundWhscode = $(value).find('.compoundwhscode').val();
+$(value).find('.compoundcodetext').html(CompoundCode);
+$(value).find('.preformmachinetext').html(PreformMachine);
+$(value).find('.compoundwhscodetext').html(CompoundWhscode);
+});
+}
+</script>
+<script>
+function formatSimpleDate(date) {
+var splittedDate = date.split('/');
+var year = splittedDate[2];
+var month = splittedDate[1];
+var day = splittedDate[0];
+return [year, month, day].join('-');
+}
+function formatSimpleDate1(date) {
+var splittedDate = date.split('-');
+var year = splittedDate[2];
+var month = splittedDate[1];
+var day = splittedDate[0];
+return [year, month, day].join('-');
+}
+</script>
+</html>
+Powered by Gitea Version: 1.16.6 Page: 492ms Template: 17ms Licenses API
+Website Go1.18.1

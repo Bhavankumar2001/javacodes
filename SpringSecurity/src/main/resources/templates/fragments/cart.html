@@ -1,0 +1,227 @@
+<cartlist class="card shadow-none" th:fragment="cartlist">
+    <div class="card-header">
+        <h3 class="card-title">Items in your Cart</h3>
+        <span class="card-tools"><button type="button" class="btn btn-outline-default  btn-sm"><i
+                    class="fas fa-trash-alt"></i> Clear All</button></span>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th style="width: 25%" class="text-left">Item</th>
+                    <th class="text-right"> <i class="fas fa-coins"></i> Price</th>
+                    <th class="text-right"> <i class="fas fa-cubes"></i> Quantity</th>
+                    <th class="text-center"> <i class="fas fa-balance-scale"></i> UOM</th>
+                    <th class="text-right"> <i class="fas fa-coins"></i> Amount</i> </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,000</td>
+                    <td class="text-right"><input type="text" data-quantity class="form-control-sm text-right"
+                            value="500"></td>
+                    <td class="text-center">KG</td>
+                    <td class="text-right">Rs.3000.00</td>
+                    <td class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-default  btn-sm"><i class="far fa-bookmark"></i>
+                            Wishlist</button>
+                        <button type="button" class="btn btn-outline-default btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,000</td>
+                    <td class="text-right"><input type="text" data-quantity class="form-control-sm text-right"
+                            value="300"></td>
+                    <td class="text-center">KG</td>
+                    <td class="text-right">Rs.3000.00</td>
+                    <td class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-default  btn-sm"><i class="far fa-bookmark"></i>
+                            Wishlist</button>
+                        <button type="button" class="btn btn-outline-default btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,000</td>
+                    <td class="text-right"><input type="text" data-quantity class="form-control-sm text-right"
+                            value="500"></td>
+                    <td class="text-center">KG</td>
+                    <td class="text-right">Rs.3000.00</td>
+                    <td class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-default  btn-sm"><i class="far fa-bookmark"></i>
+                            Wishlist</button>
+                        <button type="button" class="btn btn-outline-default btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">4</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,000</td>
+                    <td class="text-right"><input type="text" data-quantity class="form-control-sm text-right"
+                            value="500"></td>
+                    <td class="text-center">KG</td>
+                    <td class="text-right">Rs.3000.00</td>
+                    <td class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-default  btn-sm"><i class="far fa-bookmark"></i>
+                            Wishlist</button>
+                        <button type="button" class="btn btn-outline-default btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> </button>
+
+                    </td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                    <dd>Total Quantity</dd>
+                    <dt>5,000</dt>
+                </td>
+                <td></td>
+                <td class="text-right">
+                    <dd>Total Price</dd>
+                    <dt>Rs. 50,00,000</dt>
+                </td>
+                <td></td>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</cartlist>
+
+<wishlist class="card shadow-none" th:fragment="wishlist">
+    <div class="card-header">
+        <h3 class="card-title">Items in your Wishlist</h3>
+        <span class="card-tools"><button type="button" class="btn btn-outline-default  btn-sm"><i
+                    class="fas fa-trash-alt"></i> Clear All</button></span>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th style="width: 40%" class="text-left">Item</th>
+                    <th class="text-right"> <i class="fas fa-coins"></i> Price</th>
+                    <th class="text-center"> <i class="fas fa-balance-scale"></i> UOM</th>
+                    <th> <i class="fas fa-truck "></i> Stock</th>
+                    <th style="width: 150px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd><span class="badge bg-success">In Stock</span>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,00,000.00</td>
+                    <td class="text-center">KG</td>
+                    <td>500</td>
+                    <td class=" justify-content-center">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control inputquantity" placeholder="Qty" min="1"
+                                data-code="SHPTFL48" data-uom="Pieces" data-name="அவினாஷ் ரவி [ACTIVE]">
+                            <div class="input-group-append">
+                                <span class="input-group-text btn"><i class="fas fa-cart-plus"></i></span>
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-outline-default  btn-sm"><i class="fas fa-cart-plus"></i> Add To  Cart</button> -->
+                        <button type="button" class="btn btn-outline-default btn-block btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> Remove</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd><span class="badge bg-success">In Stock</span>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,00,000.00</td>
+                    <td class="text-center">KG</td>
+                    <td>500</td>
+                    <td class=" justify-content-center">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control inputquantity" placeholder="Qty" min="1"
+                                data-code="SHPTFL48" data-uom="Pieces" data-name="அவினாஷ் ரவி [ACTIVE]">
+                            <div class="input-group-append">
+                                <span class="input-group-text btn"><i class="fas fa-cart-plus"></i></span>
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-outline-default  btn-sm"><i class="fas fa-cart-plus"></i> Add To  Cart</button> -->
+                        <button type="button" class="btn btn-outline-default btn-block btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> Remove</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td>
+                        <dl>
+                            <dt>Peter England Full sleeve</dt>
+                            <dd>SHPTFL48</dd><span class="badge bg-success">In Stock</span>
+                        </dl>
+                    </td>
+                    <td class="text-right">Rs.3,00,000.00</td>
+                    <td class="text-center">KG</td>
+                    <td>500</td>
+                    <td class=" justify-content-center">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control inputquantity" placeholder="Qty" min="1"
+                                data-code="SHPTFL48" data-uom="Pieces" data-name="அவினாஷ் ரவி [ACTIVE]">
+                            <div class="input-group-append">
+                                <span class="input-group-text btn"><i class="fas fa-cart-plus"></i></span>
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-outline-default  btn-sm"><i class="fas fa-cart-plus"></i> Add To  Cart</button> -->
+                        <button type="button" class="btn btn-outline-default btn-block btn-danger btn-sm"><i
+                                class="fas fa-trash-alt"></i> Remove</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</wishlist>

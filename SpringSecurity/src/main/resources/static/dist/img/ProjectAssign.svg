@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Automated Worfklow Routing</title>
+    <g id="Automated-Worfklow-Routing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dynamic-Case-Routing" transform="translate(0.000000, 2.000000)">
+            <path d="M33.2964845,13.4251672 C37.2878281,17.2022781 38.9322948,23.8181861 37.4778921,29.6707201 C36.0234894,35.5312059 31.4784811,40.6283178 25.7930889,43.1569941 C20.0994331,45.6856705 13.2653933,45.6379596 8.59643023,42.8548253 C3.92746715,40.0796427 1.42358076,34.5690366 0.448469888,29.1140932 C-0.534904637,23.651198 0.0104963601,18.2360137 2.96888358,14.6895054 C5.91900716,11.1350452 11.282117,9.44926091 17.1327822,9.07552572 C22.9751838,8.70179053 29.3051408,9.64805622 33.2964845,13.4251672 Z" id="Path-" fill="#F4C6EF"></path>
+            <rect id="Rectangle" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="21" y="0.5" width="17" height="12"></rect>
+            <line x1="18.5" y1="18.5" x2="39.5" y2="18.5" id="Line-2" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="18.5" y1="18.5" x2="18.5" y2="23.6318359" id="Line" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="39.5" y1="18.5" x2="39.5" y2="23.6318359" id="Line" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="29.5" y1="12.5" x2="29.5" y2="17.6318359" id="Line" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+            <rect id="Rectangle" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="12.5" y="24.5" width="12" height="9"></rect>
+            <rect id="Rectangle" stroke="#7F1A5F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x="33.5" y="24.5" width="12" height="9"></rect>
+        </g>
+    </g>
+</svg>

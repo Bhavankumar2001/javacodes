@@ -1,0 +1,331 @@
+<!-- Head Fragment -->
+
+<head th:fragment="head">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Altrocks | Sterling</title>
+	<link rel="icon" type="image/png" href="/dist/img/Sterlingstart.png" />
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+	<!-- Tempusdominus Bootstrap 4 -->
+	<link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- JQVMap -->
+	<link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="/dist/css/adminlte.min.css">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	<!-- Daterange picker -->
+
+	<!-- summernote -->
+
+
+
+
+
+	<!-- Theme style -->
+	<link rel="stylesheet" href="/dist/css/adminlte.min.css">
+	<!-- <script
+	src="https://cdn.jsdelivr.net/npm/handsontable@8.3.2/dist/handsontable.full.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/handsontable@8.3.0/dist/handsontable.full.min.css"> -->
+
+	<!-- <link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" /> -->
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css">
+
+	<link rel="stylesheet" href="/dist/my/miplui.css">
+	<!-- bootstrap datepicker -->
+	<link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
+	<!-- Bootstrap time Picker -->
+	<link rel="stylesheet" href="/plugins/timepicker/bootstrap-timepicker.min.css">
+	<style>
+		/* , .dataTables_info */
+
+
+		#app-navbar {
+			background-image: linear-gradient(15deg, #8E3F7F 0%, #13547a 100%);
+		}
+
+		.diplayimg {
+			background-image: url("/dist/img/bg2.svg"), url("/dist/img/bg.svg");
+			background-repeat: no-repeat, no-repeat;
+			background-attachment: fixed, fixed;
+			background-size: 368px, 368px;
+			background-position: left bottom, right bottom;
+		}
+	</style>
+
+
+</head>
+<!-- End of Head -->
+
+<!-- Navbar -->
+
+
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand-md  navbar-dark border-bottom-0" th:fragment="navbar" id="app-navbar">
+	<div class="container" style="max-width: 1341px">
+		<a href="#" class="navbar-brand"> <img src="/dist/img/nesizelogo.png" alt="Mukesh Logo" class="brand-image  ">
+			<span class="brand-text font-weight-light">Material Request Portal</span>
+		</a>
+
+		<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse order-3" id="navbarCollapse">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item" sec:authorize="hasRole('ADMIN')">
+					<a class="nav-link btn btn-primary text-white" href="/capex/sterling/employee/create">
+						<i class="fas fa-users-cog"></i> Manage Employees
+					</a>
+				</li>
+
+
+				<li class="nav-item dropdown"><a id="dropdownSubMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" class="nav-link dropdown-toggle"> <i class="fas fa-user-secret">
+						</i> Master
+					</a>
+					<ul aria-labelledby="dropdownSubMenu1" id="app-navbar" class="dropdown-menu border-0 shadow">
+						<li><a href="/employee" class="nav-link"> <i class="fa fa-users nav-icon"></i> Users List
+							</a>
+							<a href="/employeeAdd" class="nav-link"> <i class="fa fa-user-plus nav-icon"></i> Add New
+								User
+							</a>
+
+							<!--<a href="/rolelist" class="nav-link" sec:authorize="hasAnyRole('ROLE_ADMIN')"> <i
+								class="nav-icon fa fa-users"></i> Approval
+						</a> -->
+							<a href="/itemMaster" class="nav-link"> <i class="nav-icon fa fa-shopping-cart"></i> Item
+							</a>
+
+
+							<!-- <a href="/reassingrole" class="nav-link"> <i
+								class="nav-icon fa fa-users"></i>Approval List
+						</a> -->
+							<a href="/templatelist" class="nav-link"> <i
+									class="nav-icon fa  fa-puzzle-piece"></i>Template
+							</a>
+					</ul>
+				</li>
+
+				<li class="nav-item"><a href="/Requisition" class="nav-link">
+						<i class="nav-icon fa fa-box"></i>
+
+						Requisition
+
+					</a></li>
+				<!-- 	<li class="nav-item"><a href="/intentApprovel" class="nav-link">
+						<i class="nav-icon fa fa-check"></i>
+						
+							
+						
+				</a></li> -->
+
+
+				<li class="nav-item dropdown"><a id="dropdownSubMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" class="nav-link dropdown-toggle"> <i class="fa fa-cubes">
+						</i> Indent
+					</a>
+					<ul aria-labelledby="dropdownSubMenu1" id="app-navbar" class="dropdown-menu border-0 shadow">
+						<li>
+
+							<a href="/intentApprovel" class="nav-link"> Indent Approval</a>
+
+							<a href="/pendingList" class="nav-link">Pending Indent
+							</a>
+							<a href="/indentList" class="nav-link">Confirmed Indent </a>
+							<a href="/failed-indent-list" class="nav-link">Failed Indent </a>
+							<a href="/intentdraftlist" class="nav-link"> Indent Draft
+							</a>
+					</ul>
+				</li>
+
+				<li class="nav-item dropdown"><a id="dropdownSubMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" class="nav-link dropdown-toggle"> <i class="fa fa-cubes">
+						</i> Report
+					</a>
+					<ul aria-labelledby="dropdownSubMenu1" id="app-navbar" class="dropdown-menu border-0 shadow">
+						<li><a href="/report" class="nav-link"> <i class="fa fa-cubes nav-icon"></i>Report</a>
+
+
+
+					</ul>
+				</li>
+
+			</ul>
+
+			<!-- SEARCH FORM -->
+			<!-- <form class="form-inline ml-0 ml-md-3">
+            <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+                </button>
+            </div>
+            </div>
+        </form> -->
+		</div>
+
+		<!-- Right navbar links -->
+		<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+			<!-- Navbar Search -->
+			<!-- 	<li class="nav-item"><a href="" class="nav-link"> <i
+				class="fa fa-hourglass-2"></i> TimeOut in : <span
+				id="SecondsUntilExpire">0</span> Sec
+		</a></li> -->
+			<li class="nav-item dropdown"><a class="nav-link" data-toggle="dropdown" href="#"> <b> Welcome : <i
+							class="far fa-user"> <b th:text="${username}"></b>
+						</i>
+					</b>
+				</a>
+				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-1">
+
+					<div class="dropdown-divider"></div>
+					<a href="#" class="dropdown-item text-center"> <img src="/dist/img/Sterling_logo.png"
+							alt="Support Desk" class="brand-image" style="height: 50px;">
+					</a>
+					<div class="dropdown-divider mt-1"></div>
+
+					<a href="/employeeEdit" class="btn btn-outline-primary"> <i class="far fa-user"></i> My Account
+					</a> <a href="/" class="btn btn-outline-info float-right"> <i class="fa  fa-sign-out"></i> Sign Out
+					</a>
+				</div>
+			</li>
+			<li class="nav-item"><a class="nav-link" data-widget="fullscreen" href="#" role="button"> <i
+						class="fas fa-expand-arrows-alt"></i>
+				</a></li>
+
+		</ul>
+
+	</div>
+</nav>
+<!-- /.navbar -->
+
+<!-- Content Header (Page header) -->
+<div class="content-header" th:fragment="haeader('titles')">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1 class="m-0" th:text="${titles}"></h1>
+			</div>
+			<!-- /.col -->
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Starter Page</li> -->
+				</ol>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark" th:fragment="control-sidebar">
+	<!-- Control sidebar content goes here -->
+</aside>
+
+
+
+<!-- Main Footer -->
+<footer class="main-footer" th:fragment="footer">
+	<!-- To the right -->
+	<div class="float-right d-none d-sm-inline">Version 0.1-SNAPSHOT
+	</div>
+	<!-- Default to the left -->
+	<img src="/dist/img/altrocks.png" alt="Altrocks Logo" style="width: 24px;"> <strong>Copyright &copy; 2023 <a
+			href="https://www.altrockstech.com/" target="_blank">Altrocks Tech
+			Pvt Ltd.,</a>
+	</strong> All rights reserved.
+
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+
+
+	<!-- Bootstrap 4 -->
+	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="/dist/js/adminlte.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/plugins/datatable2/datatables.min.css" />
+
+	<script type="text/javascript" src="/plugins/datatable2/datatables.min.js"></script>
+
+	<script type="text/javascript" src="/plugins/datatable2/dataTables.buttons.min.js"></script>
+
+	<script type="text/javascript" src="/plugins/datatable2/buttons.flash.min.js"></script>
+	<script type="text/javascript" src="/plugins/datatable2/jszip.min.js"></script>
+	<script type="text/javascript" src="/plugins/datatable2/pdfmake.min.js"></script>
+	<script type="text/javascript" src="/plugins/datatable2/vfs_fonts.js"></script>
+	<script type="text/javascript" src="/plugins/datatable2/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="/plugins/datatable2/buttons.print.min.js"></script>
+
+
+
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="/plugins/raphael/raphael.min.js"></script>
+	<script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	<!-- ChartJS -->
+	<script src="/cdn/moment.min.js"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="/plugins/chart.js/Chart.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- 	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		 -->
+	<script src="/plugins/select2/js/select2.full.min.js"></script>
+
+	<script src="/app.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<!-- bootstrap time picker -->
+	<script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+	<!-- date-range-picker -->
+
+
+	<script>
+
+
+	</script>
+
+
+
+
+	<script>
+		$(function () {
+			$('.select2').select2()
+		});
+	</script>
+
+
+
+</footer>

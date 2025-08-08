@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Altrocks | Invenotry Transfer</title>
+<div th:replace="fragments/Common-topnav :: head"></div>
+
+
+<!-- daterange picker -->
+<link rel="stylesheet"
+	href="/plugins/daterangepicker/daterangepicker.css">
+
+<style>
+tfoot {
+	display: table-row-group;
+}
+</style>
+
+<body class="hold-transition layout-top-nav">
+	<div class="wrapper">
+		<div th:replace="fragments/Common-topnav :: navbar"></div>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper diplayimg">
+
+			<!-- 		<div class="content-header">
+				<div class="container">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h3 class="m-0">
+								<img src="/dist/img/doc.png"> Employee List
+							</h3>
+						</div>
+						<div class="col-sm-2"></div>
+						<div class="col-sm-4"></div>
+
+					</div>
+				</div>
+
+			</div> -->
+			<div class="content-header">
+				<div class="container">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0">
+							</h1>
+						</div>
+						<div class="col-sm-2"></div>
+
+
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.container -->
+			</div>
+
+
+			<!-- Main content -->
+			<div class="content">
+
+				<div class="container">
+
+					<div class="card  card shadow-none">
+						<!-- <div class="card-header">
+							<h5 class="card-title m-0">Header</h5>
+						</div>
+ -->
+
+					
+					</div>
+
+
+			
+
+
+					<!-- /.container -->
+				</div>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+
+			<!-- InputMask -->
+			<script src="/plugins/moment/moment.min.js"></script>
+			<!-- date-range-picker -->
+			<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+
+		</div>
+		<!-- ./wrapper -->
+</body>
+
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+
+<div th:replace="fragments/Common-topnav :: footer"></div>
+
+
+</html>
